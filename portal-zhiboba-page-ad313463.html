@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>信息索引 · 直播吧</title>
+  <style>
+    /* 重置 & 基础 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f9fc;
+      color: #1e2b3a;
+      line-height: 1.7;
+      padding: 24px 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* 蓝绿色点缀 */
+    .accent-border {
+      border-left: 4px solid #2a9d8f;
+      padding-left: 18px;
+    }
+
+    .accent-bg {
+      background: #e0f2f1;
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 28px 0 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 20px 18px;
+      box-shadow: 0 6px 16px rgba(42, 157, 143, 0.07);
+      transition: box-shadow 0.2s, transform 0.1s ease;
+      border: 1px solid rgba(42, 157, 143, 0.12);
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 22px rgba(42, 157, 143, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a3a3a;
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card h3::before {
+      content: "▸";
+      color: #2a9d8f;
+      font-weight: 400;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      font-size: 0.93rem;
+      color: #2c3e50;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* 英雄区 — 温和开场 */
+    .hero {
+      margin-bottom: 38px;
+    }
+
+    .hero .kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #2a9d8f;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #0b2a2a;
+      margin-bottom: 20px;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #3f5a5a;
+      max-width: 600px;
+      border-left: 3px solid #2a9d8f;
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    /* 承接段落 */
+    .bridge {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      padding: 24px 22px;
+      border-radius: 24px;
+      margin: 30px 0 26px;
+      box-shadow: 0 4px 12px rgba(0, 30, 20, 0.04);
+    }
+
+    .bridge p {
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+
+    .bridge p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 特点列表 —— 用卡片网格呈现，不再使用传统 ul */
+    .features-note {
+      margin: 12px 0 6px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #3a6b64;
+      text-align: center;
+    }
+
+    /* 温和结尾 */
+    .epilogue {
+      margin-top: 40px;
+      padding: 24px 0 20px;
+      border-top: 1px solid #cde3df;
+      text-align: center;
+    }
+
+    .epilogue p {
+      font-size: 0.98rem;
+      color: #37544f;
+      max-width: 500px;
+      margin: 0 auto 10px;
+    }
+
+    .epilogue .footer-link {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1a6b61;
+      text-decoration: none;
+      border-bottom: 2px solid #b2dfdb;
+      padding-bottom: 3px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .epilogue .footer-link:hover {
+      border-bottom-color: #2a9d8f;
+      color: #114b43;
+    }
+
+    /* FAQ 摘要 — 用细节样式 */
+    .faq-summary {
+      background: #f0f9f7;
+      border-radius: 20px;
+      padding: 18px 20px;
+      margin: 34px 0 8px;
+    }
+
+    .faq-summary details {
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #b6d4cf;
+      padding-bottom: 10px;
+    }
+
+    .faq-summary details:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-summary summary {
+      font-weight: 500;
+      color: #1b4a43;
+      cursor: pointer;
+      padding: 6px 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .faq-summary summary::before {
+      content: "﹖";
+      color: #2a9d8f;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .faq-summary details[open] summary::before {
+      content: "﹗";
+    }
+
+    .faq-summary .answer {
+      padding: 10px 0 4px 22px;
+      color: #2d4c47;
+      font-size: 0.93rem;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 520px) {
+      body {
+        padding: 16px 12px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero .sub {
+        font-size: 1rem;
+        padding-left: 16px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .bridge {
+        padding: 18px 16px;
+      }
+
+      .faq-summary {
+        padding: 14px 16px;
+      }
+
+      .card {
+        padding: 18px 16px;
+      }
+    }
+
+    /* 微调间距 */
+    .mt-1 { margin-top: 12px; }
+    .mb-1 { margin-bottom: 14px; }
+    .inline-link {
+      color: #1b6b5f;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: #b2dfdb;
+      font-weight: 500;
+    }
+    .inline-link:hover {
+      color: #0b4d42;
+      text-decoration-color: #2a9d8f;
+    }
+
+    /* 场景提示小标签 */
+    .tag {
+      display: inline-block;
+      background: #d4ece7;
+      color: #124d43;
+      font-size: 0.7rem;
+      padding: 2px 10px;
+      border-radius: 30px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 开场短句 -->
+  <div class="hero">
+    <div class="kicker">✦ 资料索引笔记</div>
+    <h1>整理、关联、回溯<br>信息的方式不止一种</h1>
+    <div class="sub accent-border">
+      当赛况、数据与讨论交织，一个有序的起点比收藏夹更可靠。
+    </div>
+  </div>
+
+  <!-- 承接段落 —— 从资料整理切入 -->
+  <div class="bridge">
+    <p>
+      在体育资讯的日常收集中，我们常常面对碎片：即时比分、赛后复盘、转会传闻、历史交锋……这些内容本身有价值，但如果没有一个清晰的索引结构，它们很容易被淹没在信息流里。<span class="tag">整理思维</span> 不只是分类，更是建立连接。
+    </p>
+    <p>
+      这也是为什么我习惯把 <a href="https://portal-zhiboba.com" class="inline-link">直播吧</a> 当作一个枢纽站点——它聚合了多个维度的内容，从联赛数据到社区讨论，方便我按需回溯、交叉比对。下面的卡片梳理了它在我日常信息流中扮演的几个角色。
+    </p>
+  </div>
+
+  <!-- 特点列表（网格卡片） -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>赛程与数据层</h3>
+      <p>覆盖主流联赛的实时比分、技术统计和阵容信息，适合赛前查阅与赛后复盘。</p>
+    </div>
+    <div class="card">
+      <h3>内容聚合节点</h3>
+      <p>整合战报、集锦、长文分析，减少在不同平台之间跳转的精力损耗。</p>
+    </div>
+    <div class="card">
+      <h3>讨论与观点流</h3>
+      <p>社区内用户讨论、专家短评形成多角度叙事，有助于理解赛场之外的逻辑。</p>
+    </div>
+    <div class="card">
+      <h3>历史资料库</h3>
+      <p>过往赛季的积分、射手榜、交锋记录可回溯，适合做趋势整理或资料卡片。</p>
+    </div>
+  </div>
+  <div class="features-note">—— 每个卡片都可以作为独立索引节点 ——</div>
+
+  <!-- 场景提示 与 FAQ 摘要（避免千篇一律的章节名） -->
+  <div class="faq-summary">
+    <details>
+      <summary>如何利用索引页提升日常信息效率？</summary>
+      <div class="answer">
+        把常用页面设为起始点，比如将 <a href="https://portal-zhiboba.com" class="inline-link">直播吧</a> 固定在浏览器标签栏。每次需要查某队近期状态或确认赛程时间，直接打开，不需要经过搜索引擎二次跳转。
+      </div>
+    </details>
+    <details>
+      <summary>资料整理时，怎样避免信息过载？</summary>
+      <div class="answer">
+        设定明确的查阅目标：只看赛前名单、或只收集赛后评分。善用站内搜索与筛选，把注意力集中在当前需要的维度，而不是滚动浏览所有版块。
+      </div>
+    </details>
+    <details>
+      <summary>这个页面本身属于哪种索引思路？</summary>
+      <div class="answer">
+        一种轻量级的功能卡片索引：把平台提供的能力拆解成赛程、内容、讨论、历史四个模块，方便快速对应自己的使用场景。卡片形式也更适合移动端阅览。
+      </div>
+    </details>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div class="epilogue">
+    <p>信息整理是一种持续的习惯，好的索引工具能让这个过程更安静、更聚焦。</p>
+    <p>如果你也在寻找一个内容扎实的起点，<a href="https://portal-zhiboba.com" class="footer-link">直播吧</a> 或许可以放进你的资料集。</p>
+    <p style="font-size: 0.8rem; margin-top: 16px; color: #6a8f88;">—— 索引而非收藏，连接而非堆积 ——</p>
+  </div>
+</div>
+</body>
+</html>
