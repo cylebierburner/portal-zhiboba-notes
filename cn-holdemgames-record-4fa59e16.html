@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品说明 · 德州扑克游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            background: #f7f4ed;
+            color: #2c2b28;
+            line-height: 1.7;
+            padding: 0 1.2rem;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2.8rem 0 3.6rem;
+        }
+
+        /* hero 模块：轻描淡写，不喧哗 */
+        .hero {
+            text-align: left;
+            padding: 1.2rem 0 1rem;
+            border-bottom: 1px solid #d9d2c5;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #3e3a32;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #7a7368;
+            font-style: italic;
+            margin-top: 0.1rem;
+        }
+
+        /* 卡片式文章模块 */
+        .card {
+            background: #fcfaf7;
+            border-radius: 20px;
+            padding: 2rem 2rem 1.8rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+            border: 1px solid #e5dfd6;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 450;
+            color: #4e4940;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #b7aa99;
+            padding-left: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            word-spacing: 0.02em;
+        }
+
+        /* 引用块 / 提示框 */
+        .callout {
+            background: #efe9de;
+            border-left: 6px solid #b7aa99;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0 1.2rem;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.96rem;
+            color: #3f3b33;
+        }
+
+        .callout strong {
+            font-weight: 600;
+            color: #3a342b;
+        }
+
+        .callout a {
+            color: #6a5e4d;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 0.5px;
+            transition: all 0.15s;
+        }
+
+        .callout a:hover {
+            color: #3d362b;
+            text-decoration-thickness: 1.5px;
+        }
+
+        /* 特点列表——温和符号 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.4rem 0 0.6rem;
+        }
+
+        .feature-list li {
+            padding: 0.6rem 0 0.6rem 2rem;
+            position: relative;
+            border-bottom: 1px dashed #e1dad0;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #b7aa99;
+            font-size: 1.1rem;
+        }
+
+        .feature-list strong {
+            font-weight: 550;
+            color: #4f4a3f;
+        }
+
+        /* 场景小卡 */
+        .scene-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.2rem 0 0.4rem;
+        }
+
+        .scene-item {
+            flex: 1 1 180px;
+            background: #f6f2ea;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #e5ddd2;
+            font-size: 0.95rem;
+        }
+
+        .scene-item .label {
+            font-weight: 550;
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #4f4940;
+        }
+
+        /* FAQ 摘要 */
+        .faq-block {
+            margin-top: 1.4rem;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            margin: 1.2rem 0 0.2rem;
+            color: #4e4940;
+        }
+
+        .faq-a {
+            color: #4b463c;
+            margin-left: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd6ca;
+            margin: 2rem 0 1.4rem;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #8c8578;
+            text-align: center;
+            margin-top: 2.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #ddd6ca;
+        }
+
+        a {
+            color: #6a5e4d;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 0.3px;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #3d362b;
+            text-decoration-thickness: 1px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 0 0.8rem;
+            }
+            .page {
+                padding: 1.4rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+            .scene-grid {
+                flex-direction: column;
+            }
+            .scene-item {
+                flex: 1 1 auto;
+            }
+            .callout {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- hero 区：平实起笔 -->
+        <div class="hero">
+            <h1>关于德州扑克游戏</h1>
+            <div class="sub">一种需要判断、耐心与节奏的纸牌对抗</div>
+        </div>
+
+        <!-- 摘要卡片 -->
+        <div class="card">
+            <h2>产品摘要</h2>
+            <p>在牌桌文化中，<a href="https://cn-holdemgames.com">德州扑克游戏</a>始终是讨论度最高、策略纵深最明显的变种之一。它不依赖纯粹的运气，而是通过下注节奏、位置选择、底池赔率以及对手阅读来展开。正因如此，许多玩家将其视为智力与心理的持续博弈，而非简单的消遣。无论线上还是线下，规则的统一性让全球爱好者得以共享同一套语言。</p>
+            <p>本页面所指向的站点正是围绕该主题搭建，提供规则梳理、常见术语、策略随笔等内容，适合初识者了解基本框架，也适合有经验的玩家对照思路。</p>
+        </div>
+
+        <!-- 亮点：用引用框与列表结合 -->
+        <div class="card">
+            <h2>值得留意的几个亮点</h2>
+            <ul class="feature-list">
+                <li><strong>节奏可控</strong> — 每一轮行动都有明确的思考时间，玩家可以按照自己的节奏调整下注尺度，不必仓促决策。</li>
+                <li><strong>公共牌结构</strong> — 五张公牌分轮次发出，从翻牌前到河牌圈，信息逐步释放，让局势判断成为核心。</li>
+                <li><strong>位置因素</strong> — 按钮位、小盲、大盲以及后续位置直接决定了信息优势，这也是策略差异化的起点。</li>
+                <li><strong>通用记分方式</strong> — 无论使用筹码还是记分牌，底池分配逻辑清晰，在所有主流规则中保持统一。</li>
+            </ul>
+
+            <div class="callout">
+                <strong>一点观察：</strong> 很多刚接触的朋友容易忽略位置和底池赔率之间的关联，而这两者的结合恰恰是长期胜率的关键。如果你还在熟悉阶段，不妨先放慢翻牌前的入池频率，把注意力放在观察对手的下注模式上。
+            </div>
+        </div>
+
+        <!-- 使用建议：场景化 -->
+        <div class="card">
+            <h2>使用场景建议</h2>
+            <p>并非所有人都以竞技为目的接触德州扑克。以下三种场景或许能帮你找到适合自己的参与方式：</p>
+            <div class="scene-grid">
+                <div class="scene-item">
+                    <span class="label">🃏 休闲社交</span>
+                    朋友聚会、线上小型牌局，可适当放宽起手牌范围，重点在于互动与氛围。此时不必过度追求最优策略，保持对规则的尊重即可。
+                </div>
+                <div class="scene-item">
+                    <span class="label">📘 策略练习</span>
+                    通过复盘软件或笔记记录关键手牌，分析自己在翻牌圈、转牌圈的下注逻辑。每次只调整一个变量（如翻牌前范围），观察长期波动。
+                </div>
+                <div class="scene-item">
+                    <span class="label">🧘 心理磨炼</span>
+                    将牌桌视为情绪管理的练习场——连续遭遇坏牌时是否还能保持判断力？被诈唬后能否不过度报复？这些能力在生活中同样有用。
+                </div>
+            </div>
+        </div>
+
+        <!-- 可信但克制的访问说明 + FAQ 摘要 -->
+        <div class="card">
+            <h2>一些说明与常见疑问</h2>
+            <p>关于<a href="https://cn-holdemgames.com">德州扑克游戏</a>的讨论往往伴随着规则差异、平台选择以及术语解释。以下几条是玩家们常会提到的点，但请注意每个地区对德州扑克的法律定义和运营形式可能不同，参与前应自行了解当地规定。</p>
+
+            <div class="faq-block">
+                <div class="faq-q">Q：是否需要数学很好才能玩？</div>
+                <div class="faq-a">不一定。基础赔率计算（底池赔率 vs 胜率）确实有数学成分，但入门阶段只要理解“赔率是否划算”就好，具体数字可以慢慢熟悉。很多经验丰富的玩家也只用估算值。</div>
+
+                <div class="faq-q">Q：线上环境和线下差别大吗？</div>
+                <div class="faq-a">主要差别在于实时观察对手（线下可见肢体语言、表情）以及行动速度。线上更依赖下注模式和历史数据，线下则多一层心理学博弈。两种环境各有乐趣。</div>
+
+                <div class="faq-q">Q：这个站点适合完全零基础的人吗？</div>
+                <div class="faq-a">站内内容覆盖了从牌型大小、行动顺序到基础策略的脉络，零基础可以按顺序阅读，不会默认你已经知道某些术语。同时也有针对进阶玩家的手牌讨论，你可以自行挑选感兴趣的部分。</div>
+            </div>
+        </div>
+
+        <!-- 温和收束，无硬广 -->
+        <hr>
+        <div class="footer-note">
+            以上内容仅作产品性说明，不构成任何形式的建议或承诺。<br>
+            保持理性，了解规则，享受纸牌本身的逻辑乐趣。
+        </div>
+
+    </div>
+</body>
+</html>
